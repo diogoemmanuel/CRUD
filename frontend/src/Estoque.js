@@ -43,7 +43,7 @@ function Estoque() {
                                     <td>{data.saida}</td>
                                     <td>{data.local}</td>
                                     <td>
-                                    <button className='btn btn-primary'>Editar</button>
+                                    <Link to={ `update/${data.id}`} className='btn btn-primary'>Editar</Link>
                                     <button className='btn btn-danger ms-2'>Excluir</button>
                                     </td>
 
