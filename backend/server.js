@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mysql = require("mysql");
 const app = express();
+const PORT = 8081;
 app.use(express.json())
 app.use(cors());
 
@@ -45,8 +46,46 @@ app.post('/create',(req,res)=>{
     })
 })
 
-app.listen(8081, () =>{
+app.put('/update/:id',(req,res)=>{
+
+    const sql = "update estoque set `nome` = ?, `modelo` =?, `patrimonio` = ?, `entrada` = ?, `saida` = ?, `local` = ? where id = ?";
+    const values = [
+        req.body.nome,
+        req.body.modelo,
+        req.body.patrimonio,
+        req.body.entrada,
+        req.body.saida,
+        req.body.local
+
+    ]
+    const id =req.params.id;
+    db.query(sql, [...values, id], (err,data)=>{
+        if(err) return res.json("Error");
+        return res.json(data);
+        
+    })
+})
+
+
+app.delete('/estoque/:id',(req,res)=>{
+
+    const sql = "DELETE FROM estoque WHERE ID = ?";
+    
+    const id =req.params.id;
+    db.query(sql, [id], (err,data)=>{
+        if(err) return res.json("Error");
+        return res.json(data);
+        
+    })
+})
+
+
+
+
+
+app.listen(PORT, () =>{
     console.log("listening");
 })
+
 
 

@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import './index.css'
+
 function CreateEstoque(){
     const [nome,setNome] = useState('')
     const [modelo,setModelo] = useState('')
@@ -20,16 +22,17 @@ function CreateEstoque(){
         }).catch(err => console.log(err))
     }
     return(
-        <div className="d-flex vh-100 bg-primary justify-content-center align-items-center">
+        <div className="container">
+         
 
-             <div className="w-50 bg-white rounded p-3">
+             <div className="containerForm">
 
                 <form onSubmit={handleSubmit}>
-                    <h2>Insira o produto</h2>
+                    <h2 className="title">Insira o produto</h2>
                     <div className="mb-2">
                        
                        <label htmlFor="">Nome</label>
-                       <input type="text" placeholder="Enter Nome" className="form-control" onChange={e => setNome(e.target.value)}/>
+                       <input type="text" placeholder="Enter Nome" className="form-control inputEntrada" onChange={e => setNome(e.target.value)}/>
                         
 
                     </div>
@@ -75,8 +78,9 @@ function CreateEstoque(){
                        
 
                     </div>
-                    <button className="btn btn-success"> Submit</button>
-
+                    <div className="d-flex justify-content-center">
+                    <button className="btn w-50 align-center btn-primary botao "> Enviar</button>
+                    </div>
                 </form>
 
 
